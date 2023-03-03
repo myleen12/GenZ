@@ -80,9 +80,9 @@ inquirer
         name: 'email',
     },
 ])
-.then((data) => 
+.then((data) => {
 data.badge = renderLicenseBadge(data.license),
 data.licenseText = renderLicenseLink(data.license),
 fs.writeFile('README-DEMO.md', questions(data), (err) => {
     err ? console.log(err) : console.log('Great Job!')
-}))
+})})
