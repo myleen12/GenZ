@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs')
+const {renderLicenseBadge, renderLicenseText} = require('./utils/generateBadges')
 // TODO: Create an array of questions for user input
 const questions = ({title, description, installation, usage, contributing, tests, license, github, email}) =>
 `# ${title}
@@ -78,13 +79,8 @@ inquirer
     },
 ])
 .then((data) => 
+data.badge = renderLicenseBadge(data.license),
+data.licenseText = renderLicenseText(data.license),
 fs.writeFile('README.md', questions(data), (err) => {
     err ? console.log(err) : console.log('Great Job!')
 }))
-
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
