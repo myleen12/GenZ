@@ -1,10 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs')
-const {renderLicenseBadge, renderLicenseText} = require('./utils/generateBadges')
+const fs = require('fs');
+const {renderLicenseBadge, renderLicenseLink} = require('./Develop/utils/generateBadge');
 // TODO: Create an array of questions for user input
-const questions = ({title, description, installation, usage, contributing, tests, license, github, email}) =>
+const questions = ({title, description, installation, usage, contributing, tests, license, github, email, badge, licenseText}) =>
 `# ${title}
+  ${badge}
 
 ## Description
 ${description}
@@ -31,6 +32,7 @@ ${tests}
 
 ## License
 ${license}
+${licenseText}
 
 ## Questions
 -   https://github.com/${github}
@@ -80,7 +82,7 @@ inquirer
 ])
 .then((data) => 
 data.badge = renderLicenseBadge(data.license),
-data.licenseText = renderLicenseText(data.license),
-fs.writeFile('README.md', questions(data), (err) => {
+data.licenseText = renderLicenseLink(data.license),
+fs.writeFile('README-DEMO.md', questions(data), (err) => {
     err ? console.log(err) : console.log('Great Job!')
 }))
