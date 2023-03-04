@@ -6,9 +6,9 @@
 
 ## Task
 
--installed npm i inquirer@8.2.4 
--cloned starter code
--createrd a readme demo
+- installed npm i inquirer@8.2.4 
+- cloned starter code
+- created a README-DEMO 
 
 
 ## Video Link 
